@@ -1,5 +1,6 @@
 body{
     margin: 0;
+    width: auto;
 }
 body h2{
     background-color: #1b49e0;
@@ -8,10 +9,14 @@ body h2{
     margin: 0;
     padding: 10px;
     text-align: center;
+    width: auto;
+    
 }
 
 #input{
-    margin-top: 15px;
+    
+    margin: 55px;
+    margin-top:15px;
     text-align: center;
     border-radius: 50px;
     border-top: 12px;
@@ -24,15 +29,20 @@ body h2{
     
 }
 
-
 .form {
+    width: auto;
     display: flex;
     justify-content:space-around;
+    align-items:center;
     flex-wrap: wrap;
+    width: 100%;
+}
+.description{
+    display: flex;
+    align-items: center;
     
 }
-
-.announce,.reset , .view{
+.announce,.reset{
     color: aliceblue;
     margin: 0;
     padding:10px;
@@ -41,19 +51,28 @@ body h2{
     background-color: #1b49e0;
     border-radius: 12%;
 }
-.announce:hover,.reset:hover,.view:hover{
+
+.announce:hover,.reset:hover{
     background-image: linear-gradient(to left,#1b49e0, #fecb00);
     border-radius: 35%;
 
 }
+.dataview{
+    padding: 3%;
+
+}
+
+.dataview{
+    margin:5%;
+}
 
 ::-webkit-scrollbar {
-    width:10px;
+    width:5px;
     background:rgb(149, 160, 170);
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 100px;
+    border-radius: 10px;
     background: #1b49e0;
-    box-shadow: inset 0 0 33px rgba(77, 69, 69, 0.5);
+    box-shadow: inset 0 0 3px rgba(77, 69, 69, 0.5);
 }

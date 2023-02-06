@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname = "bill updater";
+$dbname = "hub";
 
 $con = mysqli_connect($servername, $username, $password,$dbname);
 
