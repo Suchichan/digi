@@ -10,12 +10,16 @@
     
     <!-- external CSS-->
     <link rel='stylesheet' href="style.css">
+    <!-- Bootstrap CSS cdn -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     
+    <!-- datatables css cdn -->
     <link rel="stylesheet" href="//cdn.datatables.net/1.13.2/css/jquery.dataTables.min.css">
 
     
   </head>
   <body>
+
 
 
 <section id ="nav">
@@ -30,38 +34,40 @@
         
 
 
-  <form method="post">
+  <form method="post" class="form-floating">
   <div class="form">
 
     <div class ="title">
       <label for="ControlInput1" >Title</label>
-      <input type="text" name="title" class="form-control" id="ControlInput1" placeholder="Title of Announcement" required>
+      <input type="text" name="title" class="form-control" id="ControlInput1" placeholder="Announcement Title"  required>
     </div>
 
     <div class="description">
-      <label for="ControlTextarea1">Description</label>
-      <textarea type="text" name="text" id="ControlTextarea1" rows="8" cols="50" placeholder="Description of the Announcement" required></textarea>
+      <label for="ControlInput2">Description</label>
+      <textarea type="text" name="text" id="ControlInput2" class="form-control" rows="8" cols="50" placeholder="Description of the Announcement" required></textarea>
     </div>
 
-    <div class = "date">
-    
-      <label for="DatelInput1">Start Date</label>
-      <input type="date" name="start" class="form-control" id="DateInput1" required>
-      <br>
-      <label for="DatelInput1">End Date</label>
-      <input type="date" name="end" id="DateInput2" required>
+    <div class = "date">  
+      <label for="start">Start Date</label>
+      <input type="date" name="start" id="start" required>
+      <label for="end">End Date</label>
+      <input type="date" name="end" id="end" required>
     </div>
 
 
-    <div class="status">
-      <legend >Status</legend>
-        <select name="status" required>
-          <option>Publish
-          <option>Enterred
+    <div class="form-floating">
+
+        <select name="status" class="form-select" id="floatingSelect" aria-label="Status" required>
+          <option>
+          <option value="1">Publish
+          <option value="2">Enterred
           </select>
+          <label for="floatingSelect">Status</label>
     </div>
+</div>
   </div>
 
+  
   <h5>
         <input class="announce" name ="submit" type="submit" value="Announce">
         <input class = "reset" name ="reset" type="reset" value="Reset">     
@@ -70,8 +76,10 @@
 </section>
 
 <div class="dataview">
+  <h3>Announcement View Table</h3>
 
-<table class="table">
+  <table class="table">
+
     <thead>
         <tr>
             <td>Edit</td>
@@ -82,25 +90,27 @@
             <td>End</td>
             <td>Status</td>
             <td>Date of the Announcement</td>
-        </tr>
-    </thead>
-
+            <td>Delete</td>
+          </tr>
+        </thead>
+        
+        <tbody>
 
         <?php
       #connection check
-  include "connect.php";
-  $sql = "SELECT * FROM announce";
-  $result = mysqli_query($con,$sql) or die("Query Failed");
-  $row= mysqli_fetch_assoc($result);
+      include "connect.php";
+      $sql = "SELECT * FROM announce";
+      $result = mysqli_query($con,$sql) or die("Query Failed");
+      $row= mysqli_fetch_assoc($result);
       while($row=$result->fetch_assoc())
         {
-    ?>
-    <tbody>
+      ?>
         <tr>
+
           <form action="edit.php" method="post">
             <input type="hidden" name="id" value="<?php echo $row['id']?>">
             <td><input class="announce" name ="update" type="submit" value="Edit">
-        </form>
+          </form>
 
             <td><?php echo $row['id'];?></td>
             <td><?php echo $row['title'];?></td>
@@ -109,25 +119,38 @@
             <td><?php echo $row['end'];?></td>
             <td><?php echo $row['status'];?></td>
             <td><?php echo $row['date'];?></td>
-        </tr>
-    </tbody>   
 
+          <form action ="delete.php" method = "post">
+            <input type="hidden" name="id" value="<?php echo $row['id']?>">
+            <td><button class="announce" type="submit" value ="Delete" name="delete" onclick="return confirm('<?php echo'You want to delete announcement'.'\n'.' Id Number : '.$row['id'].'\n'.' Announcement Title : '.$row['title']?>')">Delete</button>
+
+          </form>        
+        </tr>
+        
         <?php
         }
         ?>    
-    </table>   
-
-    <script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+</tbody>   
+  </table>
+</div>
+<!-- Bootstrap js cdn -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <!-- jquery cdn -->
+    <script src="https://code.jquery.com/jquery-3.6.3.js" ></script>
+    <!-- datatables js cdn -->
     <script src="//cdn.datatables.net/1.13.2/js/jquery.dataTables.min.js"></script>
-
+    <!-- datatables js function -->
     <script>
         $(document).ready( function () {
         $('.table').DataTable();
+        $('#example').dataTable({"sPaginationType": "full_numbers"});
+        $('#example').DataTable();
     } );</script>
-
-</div>
 </body>
 </html>
+
+
+
 
 <?php
     include "connect.php";

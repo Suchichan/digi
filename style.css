@@ -14,7 +14,6 @@ body h2{
 }
 
 #input{
-    
     margin: 55px;
     margin-top:15px;
     text-align: center;
@@ -26,9 +25,7 @@ body h2{
     padding-top: 20px;
     border-style: solid ;
     border-color:#fecb00;
-    
 }
-
 .form {
     width: auto;
     display: flex;
@@ -36,15 +33,44 @@ body h2{
     align-items:center;
     flex-wrap: wrap;
     width: 100%;
+    margin-top: 3%;
+}
+.title{
+    margin-bottom: 5%;
 }
 .description{
     display: flex;
     align-items: center;
-    
+    margin-bottom: 5%;
 }
+
+.description label{
+    padding: 2%;    
+}
+
+.area{
+    padding: 6%;
+    text-align: center;
+}
+
+#start{
+    display: flex;
+    margin: 3%;
+    margin-bottom: 45px;
+    text-align: center;
+}
+
+#end{
+    display:flex;
+    margin: 3%;
+    text-align: center;
+}
+
+
 .announce,.reset{
     color: aliceblue;
     margin: 0;
+    margin-top: 5%;
     padding:10px;
     margin-right: 8px;
     border: none;
@@ -57,22 +83,26 @@ body h2{
     border-radius: 35%;
 
 }
-.dataview{
-    padding: 3%;
-
-}
 
 .dataview{
-    margin:5%;
+    padding: 1%;
+    margin:2%;    
 }
+.dataview h3{
+    text-align: center;
+}
+
+
+
+
 
 ::-webkit-scrollbar {
-    width:5px;
+    width:8px;
     background:rgb(149, 160, 170);
+    
 }
 
 ::-webkit-scrollbar-thumb {
-    border-radius: 10px;
+    border-radius: 30%;
     background: #1b49e0;
-    box-shadow: inset 0 0 3px rgba(77, 69, 69, 0.5);
 }
